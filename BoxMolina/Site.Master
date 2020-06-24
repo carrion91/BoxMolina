@@ -1,0 +1,102 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BoxMolina.Site"%>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gimnasio</title>
+
+    <!-- estilos -->
+    <link href="css/carrion.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-glyphicons.min.css" rel="stylesheet" />
+    <!-- fin de estilos -->
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <img src="Imagenes/prueba.png" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href='<%=Page.ResolveUrl("~/Default.aspx") %>'>Inicio</a>
+                    <a class="nav-item nav-link" href='<%=Page.ResolveUrl("~/Default.aspx") %>'>Acerca de</a>
+                </div>
+
+            </div>
+        </nav>
+
+        <div style="text-align: right; padding-bottom: 5px;">
+            
+            <asp:LinkButton ID="btnUsuario" runat="server" ToolTip="Usuario" ForeColor="#c0c0c0" data-toggle="modal" data-target="#modalInicioSesion">
+                <asp:Label ID="lblUsuario" runat="server" Text="Iniciar sesión"></asp:Label>
+                <span class="glyphicon glyphicon-user"></span>
+            </asp:LinkButton>
+
+            <asp:LinkButton ID="btnCerrarSesion" runat="server" ToolTip="Usuario" ForeColor="#c0c0c0" Visible="false" OnClick="btnCerrarSesion_Click">
+                <asp:Label ID="nombreUsuario" runat="server" Text=""></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text=" Cerrar sesión"></asp:Label>
+                <span class="glyphicon glyphicon-user"></span>
+            </asp:LinkButton>
+        </div>
+
+        <asp:ContentPlaceHolder ID="Contenido" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <!--- modal inicio de sesion -->
+        <!-- Modal -->
+        <div class="modal fade" id="modalInicioSesion" tabindex="-1" role="dialog" aria-labelledby="modalInicioSesionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalInicioSesionLabel">Inicio de sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="alert alert-danger" role="alert" id="divUsuarioIncorrecto" runat="server" visible="false">Usuario o contraseña incorrecto</div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="glyphicon glyphicon-user"></span></div>
+                            </div>
+                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario"></asp:TextBox>
+                        </div>
+
+                        <br />
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="glyphicon glyphicon-lock"></span></div>
+                            </div>
+                            <asp:TextBox ID="txtContrasena" runat="server" class="form-control" placeholder="Contraseña"></asp:TextBox>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <asp:Button ID="btnInicioSesion" runat="server" CssClass="btn btn-primary" Text="Aceptar" OnClick="btnInicioSesion_Click" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin modal inicio de sesion -->
+
+        <script src='<%=Page.ResolveUrl("~/js/jquery-3.2.1.slim.min.js") %>'></script>
+        <script src='<%=Page.ResolveUrl("~/js/bootstrap.min.js") %>'></script>
+        <script src='<%=Page.ResolveUrl("~/js/carrion.js") %>'></script>
+
+    </form>
+</body>
+</html>
