@@ -11,12 +11,12 @@ namespace AccesoDatos
     public class Conexion
     {
 
-        public SqlConnection conexionCafFtiness()
+        public SqlConnection conexionBoxMolina()
         {
             SqlConnection conn = new SqlConnection();
 
             String connectionString
-                = ConfigurationManager.ConnectionStrings["ConexionCaf_Fitness"].ConnectionString; ;
+                = ConfigurationManager.ConnectionStrings["conexion_molina"].ConnectionString; ;
 
             conn.ConnectionString = connectionString;
 
