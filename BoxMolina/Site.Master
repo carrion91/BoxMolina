@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BoxMolina.Site"%>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BoxMolina.Site" %>
 
 <!DOCTYPE html>
 
@@ -8,6 +8,7 @@
     <title>Box Molina</title>
 
     <!-- Bootstrap -->
+    <link href="css/carrion.css" rel="stylesheet" />
     <link href="css/bootstrap.css" rel="stylesheet" />
 
     <link href="css/toastr.css" rel="stylesheet" />
@@ -15,59 +16,78 @@
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!--Dialogos de Mensaje ref:https://nakupanda.github.io/bootstrap3-dialog/#available-options -->
-    <link href="css/bootstrap-dialog.css" rel="stylesheet" />
 
     <!-- Table -->
     <script src='<%=Page.ResolveUrl("~/js/jquery-3.0.0.js") %>'></script>
-    <script src='<%=Page.ResolveUrl("~/js/Dialogo.js") %>'></script>
     <script src='<%=Page.ResolveUrl("~/js/bootstrap.js") %>'></script>
     <script src='<%=Page.ResolveUrl("~/js/toastr.js") %>'></script>
     <script src='<%=Page.ResolveUrl("~/js/toastrConfig.js") %>'></script>
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    
+
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-            
-            <nav class="navbar navbar-default" role="navigation" style="background-color:black">
-                    <div class="container-fluid">
-                        <img src="Imagenes/logo.jpg" />
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed btn btn-danger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                            
-                            <%------------------------------ MENUS ---------------------------%>
 
-                            <%------------------------------MENU DE ADMINISTRADOR--------------------------%>
-                            <div id="MenuAdministrador" runat="server">
-                                <ul class="nav navbar-nav">
-                                    <li><a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color:white">Inicio</a></li>
-                                    <li>
-                                        <a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color:white">Acerca de</a>
+        <nav class="navbar navbar-default" role="navigation" style="background-color: black">
+            <div class="container-fluid">
+                <img src='<%=Page.ResolveUrl("~/Imagenes/logo.jpg") %>' />
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed btn btn-danger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+                    <%------------------------------ MENUS ---------------------------%>
+                    <div id="menu" class="menu" runat="server">
+                        <%------------------------------MENU DE ADMINISTRADOR--------------------------%>
+                        <div id="MenuAdministrador" runat="server">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown" aria-expanded="true">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white">Configuración<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu" style="background-color:black">
+                                            <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClases.aspx") %>' style="color: white">Clases</a></li>
+                                        </ul>
                                     </li>
-                                </ul>
-                            </div>
-                            <%------------------------------ FIN MENU DE ADMINISTRADOR--------------------------%>
+                                <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClientes.aspx") %>' style="color: white">Clientes</a></li>
+                            </ul>
                         </div>
+                        <%------------------------------ FIN MENU DE ADMINISTRADOR--------------------------%>
+                        <%------------------------------MENU DE CLIENTE--------------------------%>
+                        <div id="MenuCliente" runat="server">
+                            <ul class="nav navbar-nav">
+                                <li><a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color: white">Inicio</a></li>
+                                <li>
+                                    <a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color: white">Acerca de</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <%------------------------------ FIN MENU DE CLIENTE--------------------------%>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a id="username" runat="server" style="color: white;"></a>
+                            </li>
+                            <li>
+                                <asp:LinkButton ID="btnIniciarSesion" runat="server" Style="color: white" OnClick="btnIniciarSesion_Click">Cerrar sesión</asp:LinkButton>
+                            </li>
+                        </ul>
                     </div>
+                </div>
+            </div>
 
-                    <!-- /.container-fluid -->
-                </nav>
+            <!-- /.container-fluid -->
+        </nav>
 
-        <asp:ContentPlaceHolder ID="Contenido" runat="server">
-        </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Contenido" runat="server">
+            </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

@@ -13,8 +13,20 @@ namespace BoxMolina
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                username.InnerText = Session["usuario"].ToString();
 
+            }
         }
 
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Session.Abandon();
+            Session.Clear();
+            String url = Page.ResolveUrl("~/Default.aspx");
+            Response.Redirect(url);
+        }
     }
 }

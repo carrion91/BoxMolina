@@ -7,127 +7,136 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace BoxMolina {
+namespace BoxMolina.Admin {
     
     
-    public partial class Default {
+    public partial class AdministrarClientes {
         
         /// <summary>
-        /// Control btnIniciarSesion.
+        /// Control txtBuscarNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnIniciarSesion;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarNombre;
         
         /// <summary>
-        /// Control UpdatePanel5.
+        /// Control txtBuscarTipoClase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarTipoClase;
         
         /// <summary>
-        /// Control liIngresar.
+        /// Control txtBuscarCedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liIngresar;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarCedula;
         
         /// <summary>
-        /// Control btnViewIngresar.
+        /// Control txtBuscarTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnViewIngresar;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarTelefono;
         
         /// <summary>
-        /// Control liRegistrarse.
+        /// Control txtBucarCorreo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liRegistrarse;
+        protected global::System.Web.UI.WebControls.TextBox txtBucarCorreo;
         
         /// <summary>
-        /// Control btnViewRegistrarse.
+        /// Control rpClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnViewRegistrarse;
+        protected global::System.Web.UI.WebControls.Repeater rpClientes;
         
         /// <summary>
-        /// Control ViewIngresar.
+        /// Control lbPrimero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewIngresar;
+        protected global::System.Web.UI.WebControls.LinkButton lbPrimero;
         
         /// <summary>
-        /// Control txtUsuario.
+        /// Control lbAnterior.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+        protected global::System.Web.UI.WebControls.LinkButton lbAnterior;
         
         /// <summary>
-        /// Control txtPassword.
+        /// Control rptPaginacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.DataList rptPaginacion;
         
         /// <summary>
-        /// Control ChckBxAdministrador.
+        /// Control lbSiguiente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChckBxAdministrador;
+        protected global::System.Web.UI.WebControls.LinkButton lbSiguiente;
         
         /// <summary>
-        /// Control btnOlvidoContrasenna.
+        /// Control lbUltimo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnOlvidoContrasenna;
+        protected global::System.Web.UI.WebControls.LinkButton lbUltimo;
         
         /// <summary>
-        /// Control btnIngresar.
+        /// Control lblpagina.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.Label lblpagina;
         
         /// <summary>
-        /// Control ViewRegistrarse.
+        /// Control lblEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewRegistrarse;
+        protected global::System.Web.UI.WebControls.Label lblEliminar;
+        
+        /// <summary>
+        /// Control btnSieliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSieliminar;
         
         /// <summary>
         /// Control Label1.
@@ -220,48 +229,12 @@ namespace BoxMolina {
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
         
         /// <summary>
-        /// Control Label5.
+        /// Control btnSiEditar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Control txtContrasenna1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContrasenna1;
-        
-        /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// Control txtContrasenna2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContrasenna2;
-        
-        /// <summary>
-        /// Control btnRegistrar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrar;
+        protected global::System.Web.UI.WebControls.Button btnSiEditar;
     }
 }

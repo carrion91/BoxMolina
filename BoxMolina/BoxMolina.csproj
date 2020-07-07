@@ -67,33 +67,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdministrarClases.aspx" />
+    <Content Include="Admin\AdministrarClientes.aspx" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\carrion.css" />
     <Content Include="css\toastr.css" />
     <Content Include="Default.aspx" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\css\font-awesome.min.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Imagenes\gym1.jpg" />
     <Content Include="Imagenes\gym2.jpg" />
     <Content Include="Imagenes\gym3.jpg" />
     <Content Include="Imagenes\logo.jpg" />
     <Content Include="Imagenes\prueba.png" />
-    <Content Include="js\bootstrap-dialog.js" />
+    <Content Include="Inicio.aspx" />
     <Content Include="js\bootstrap.js" />
-    <Content Include="js\Dialogo.js" />
     <Content Include="js\jquery-3.0.0.js" />
     <Content Include="js\toastr.js" />
     <Content Include="js\toastrConfig.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdministrarClases.aspx.cs">
+      <DependentUpon>AdministrarClases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarClases.aspx.designer.cs">
+      <DependentUpon>AdministrarClases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarClientes.aspx.cs">
+      <DependentUpon>AdministrarClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarClientes.aspx.designer.cs">
+      <DependentUpon>AdministrarClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -103,10 +126,9 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.woff2" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
@@ -138,6 +160,11 @@
     <Content Include="font-awesome\scss\_rotated-flipped.scss" />
     <Content Include="font-awesome\scss\_stacked.scss" />
     <Content Include="font-awesome\scss\_variables.scss" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
