@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarClases.aspx.cs" Inherits="BoxMolina.Admin.AdministrarClases" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarCostos.aspx.cs" Inherits="BoxMolina.Admin.AdministrarCostos" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,7 +14,7 @@
 
                 <%-- titulo pantalla --%>
                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
-                    <asp:Label runat="server" Text="Clases" Font-Bold="true"></asp:Label>
+                    <asp:Label runat="server" Text="Costos" Font-Bold="true"></asp:Label>
                 </div>
                 <%-- fin titulo pantalla --%>
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-md-12 col-sm-12">
-                    <asp:Button ID="btnNueva" runat="server" Text="Nueva clase" OnClick="btnNueva_Click" CssClass="btn btn-default" />
+                    <asp:Button ID="btnNuevo" runat="server" Text="Nuevo costo" OnClick="btnNuevo_Click" CssClass="btn btn-default" />
                 </div>
 
                 <div class="col-md-12 col-sm-12">
@@ -37,33 +37,33 @@
                         <thead>
                             <tr style="text-align: center; background-color: black; color: white">
                                 <th></th>
-                                <th>Hora</th>
-                                <th>Cupo</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
                             </tr>
                         </thead>
                         <tr>
                             <td></td>
                             <td>
-                                <asp:TextBox ID="txtBuscarHora" runat="server" CssClass="form-control chat-input" AutoPostBack="true" OnTextChanged="txtBuscarFiltro_TextChanged" placeholder="Filtro hora"></asp:TextBox>
+                                <asp:TextBox ID="txtBuscarDescripcion" runat="server" CssClass="form-control chat-input" AutoPostBack="true" OnTextChanged="txtBuscarFiltro_TextChanged" placeholder="Filtro descripción"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtBuscarCupo" runat="server" CssClass="form-control chat-input" AutoPostBack="true" OnTextChanged="txtBuscarFiltro_TextChanged" placeholder="Filtro cupo"></asp:TextBox>
+                                <asp:TextBox ID="txtBuscarMonto" runat="server" CssClass="form-control chat-input" AutoPostBack="true" OnTextChanged="txtBuscarFiltro_TextChanged" placeholder="Filtro monto"></asp:TextBox>
                             </td>
                         </tr>
-                        <asp:Repeater ID="rpClases" runat="server">
+                        <asp:Repeater ID="rpCostos" runat="server">
                             <HeaderTemplate>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:LinkButton ID="btnEditar" OnClick="btnEditar_Click" runat="server" ToolTip="Editar" CommandArgument='<%# Eval("idClase") %>' CssClass="btn glyphicon glyphicon-pencil" ForeColor="Black"></asp:LinkButton>
-                                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ToolTip="Eliminar" CommandArgument='<%# Eval("idClase") %>' CssClass="btn glyphicon glyphicon-trash" ForeColor="Black"></asp:LinkButton>
+                                        <asp:LinkButton ID="btnEditar" OnClick="btnEditar_Click" runat="server" ToolTip="Editar" CommandArgument='<%# Eval("idCosto") %>' CssClass="btn glyphicon glyphicon-pencil" ForeColor="Black"></asp:LinkButton>
+                                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ToolTip="Eliminar" CommandArgument='<%# Eval("idCosto") %>' CssClass="btn glyphicon glyphicon-trash" ForeColor="Black"></asp:LinkButton>
                                     </td>
                                     <td>
-                                        <%# (Convert.ToInt32(Eval("hora"))<13?(Convert.ToInt32(Eval("hora"))<10?"0"+Eval("hora"):Eval("hora")):((Convert.ToInt32(Eval("hora"))-12)<10?"0"+(Convert.ToInt32(Eval("hora"))-12):(Convert.ToInt32(Eval("hora"))-12).ToString())) +":"+ (Convert.ToInt32(Eval("minutos"))<10?"0"+Eval("minutos"):Eval("minutos"))+(Convert.ToInt32(Eval("hora"))<13?" am":" pm")%>
+                                        <%# Eval("descripcion")%>
                                     </td>
                                     <td>
-                                        <%# Eval("cupo") %>
+                                        ₡ <%# Eval("monto") %>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -113,7 +113,7 @@
     </asp:UpdatePanel>
 
     <!-- Modal de nuevo -->
-    <div id="modalNueva" class="modal fade" role="alertdialog">
+    <div id="modalNuevo" class="modal fade" role="alertdialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content -->
             <div class="modal-content">
@@ -123,7 +123,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
-                                    <asp:Label runat="server" Text="Nueva clase" Font-Bold="true"></asp:Label>
+                                    <asp:Label runat="server" Text="Nuevo costo" Font-Bold="true"></asp:Label>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
@@ -132,10 +132,10 @@
 
                                 <div class="col-md-12 col-sm-12">
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:Label ID="Label1" runat="server" Text="Hora"></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text="Descripción"></asp:Label>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtHora" runat="server" CssClass="form-control" placeholder="Hora" TextMode="Time"></asp:TextBox>
+                                        <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" placeholder="Descripción"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -143,10 +143,13 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:Label ID="Label2" runat="server" Text="Cupo"></asp:Label>
+                                        <asp:Label ID="Label2" runat="server" Text="Monto"></asp:Label>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtCupo" runat="server" CssClass="form-control" placeholder="Cupo" TextMode="Number"></asp:TextBox>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">₡</span>
+                                            <asp:TextBox ID="txtMonto" runat="server" CssClass="form-control" placeholder="Monto" TextMode="Number"></asp:TextBox>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -158,7 +161,7 @@
                         <!-- Fin Modal body -->
                         <!-- Modal footer -->
                         <div class="modal-footer" style="align-content: center; text-align: center;">
-                            <asp:Button ID="btnNuevaClase" runat="server" Text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevaClase_Click" />
+                            <asp:Button ID="btnNuevoCosto" runat="server" Text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevoCosto_Click" />
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
                         <!-- Fin Modal footer -->
@@ -181,7 +184,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
-                                    <asp:Label runat="server" Text="Eliminar clase" Font-Bold="true"></asp:Label>
+                                    <asp:Label runat="server" Text="Eliminar costo" Font-Bold="true"></asp:Label>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
@@ -189,7 +192,7 @@
                                 </div>
 
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
-                                    <asp:Label ID="lblEliminar" runat="server" Text="Eliminar clase"></asp:Label>
+                                    <asp:Label ID="lblEliminar" runat="server" Text="Eliminar costo"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +224,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
-                                    <asp:Label runat="server" Text="Editar clase" Font-Bold="true"></asp:Label>
+                                    <asp:Label runat="server" Text="Editar costo" Font-Bold="true"></asp:Label>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
@@ -230,10 +233,10 @@
 
                                 <div class="col-md-12 col-sm-12">
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:Label ID="Label3" runat="server" Text="Hora"></asp:Label>
+                                        <asp:Label ID="Label3" runat="server" Text="Descripción"></asp:Label>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtEditarHora" runat="server" CssClass="form-control" placeholder="Hora" TextMode="Time"></asp:TextBox>
+                                        <asp:TextBox ID="txtEditarDescripcion" runat="server" CssClass="form-control" placeholder="Descripción"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -241,10 +244,13 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:Label ID="Label4" runat="server" Text="Cupo"></asp:Label>
+                                        <asp:Label ID="Label4" runat="server" Text="Monto"></asp:Label>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtEditarCupo" runat="server" CssClass="form-control" placeholder="Cupo" TextMode="Number"></asp:TextBox>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">₡</span>
+                                            <asp:TextBox ID="txtEditarMonto" runat="server" CssClass="form-control" placeholder="Monto" TextMode="Number"></asp:TextBox>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -270,12 +276,12 @@
 
     <script type="text/javascript">
 
-        function levantarModalNueva() {
-            $('#modalNueva').modal('show');
+        function levantarModalNuevo() {
+            $('#modalNuevo').modal('show');
         };
 
-        function cerrarModalNueva() {
-            $('#modalNueva').modal('hide');
+        function cerrarModalNuevo() {
+            $('#modalNuevo').modal('hide');
         };
 
         function levantarModalEditar() {

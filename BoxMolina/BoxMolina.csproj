@@ -69,6 +69,8 @@
   <ItemGroup>
     <Content Include="Admin\AdministrarClases.aspx" />
     <Content Include="Admin\AdministrarClientes.aspx" />
+    <Content Include="Admin\AdministrarCostos.aspx" />
+    <Content Include="Client\ConfiguracionCliente.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\carrion.css" />
     <Content Include="css\toastr.css" />
@@ -103,6 +105,20 @@
     </Compile>
     <Compile Include="Admin\AdministrarClientes.aspx.designer.cs">
       <DependentUpon>AdministrarClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarCostos.aspx.cs">
+      <DependentUpon>AdministrarCostos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarCostos.aspx.designer.cs">
+      <DependentUpon>AdministrarCostos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\ConfiguracionCliente.aspx.cs">
+      <DependentUpon>ConfiguracionCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\ConfiguracionCliente.aspx.designer.cs">
+      <DependentUpon>ConfiguracionCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

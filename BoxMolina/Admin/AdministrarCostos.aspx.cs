@@ -11,11 +11,11 @@ using System.Web.UI.WebControls;
 
 namespace BoxMolina.Admin
 {
-    public partial class AdministrarClases : System.Web.UI.Page
+    public partial class AdministrarCostos : System.Web.UI.Page
     {
         #region variables globales
-        ClaseDatos claseDatos = new ClaseDatos();
-        public static Clase claseSeleccionada;
+        CostoDatos costoDatos = new CostoDatos();
+        public static Costo costoSeleccionado;
         #endregion
 
         #region paginacion
@@ -47,21 +47,21 @@ namespace BoxMolina.Admin
 
             if (!IsPostBack)
             {
-                Session["listaClases"] = claseDatos.getClases();
-                cargarClases();
+                Session["listaCostos"] = costoDatos.getCostos();
+                cargarCostos();
             }
         }
         #endregion
 
         #region logica
-        public void cargarClases()
+        public void cargarCostos()
         {
-            List<Clase> listaClases = (List<Clase>)Session["listaClases"];
+            List<Costo> listaCostos = (List<Costo>)Session["listaCostos"];
 
-            List<Clase> listaClasesFiltrada = (List<Clase>)listaClases.Where(clase => clase.cupo.ToString().ToUpper().Contains(txtBuscarCupo.Text.ToUpper())
-            && clase.hora.ToString().ToUpper().Contains(txtBuscarHora.Text.ToUpper())).ToList();
+            List<Costo> listaCostosFiltrada = (List<Costo>)listaCostos.Where(costo => costo.descripcion.ToUpper().Contains(txtBuscarDescripcion.Text.ToUpper())
+            && costo.monto.ToString().ToUpper().Contains(txtBuscarMonto.Text.ToUpper())).ToList();
 
-            var dt = listaClasesFiltrada;
+            var dt = listaCostosFiltrada;
             pgsource.DataSource = dt;
             pgsource.AllowPaging = true;
             //numero de items que se muestran en el Repeater
@@ -77,8 +77,8 @@ namespace BoxMolina.Admin
             lbPrimero.Enabled = !pgsource.IsFirstPage;
             lbUltimo.Enabled = !pgsource.IsLastPage;
 
-            rpClases.DataSource = pgsource;
-            rpClases.DataBind();
+            rpCostos.DataSource = pgsource;
+            rpCostos.DataBind();
 
             //metodo que realiza la paginacion
             Paginacion();
@@ -124,32 +124,32 @@ namespace BoxMolina.Admin
         protected void lbPrimero_Click(object sender, EventArgs e)
         {
             paginaActual = 0;
-            cargarClases();
+            cargarCostos();
         }
 
         protected void lbUltimo_Click(object sender, EventArgs e)
         {
             paginaActual = (Convert.ToInt32(ViewState["TotalPaginas"]) - 1);
-            cargarClases();
+            cargarCostos();
         }
 
         protected void lbAnterior_Click(object sender, EventArgs e)
         {
             paginaActual -= 1;
-            cargarClases();
+            cargarCostos();
         }
 
         protected void lbSiguiente_Click(object sender, EventArgs e)
         {
             paginaActual += 1;
-            cargarClases();
+            cargarCostos();
         }
 
         protected void rptPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("nuevaPagina")) return;
             paginaActual = Convert.ToInt32(e.CommandArgument.ToString());
-            cargarClases();
+            cargarCostos();
         }
 
         protected void rptPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -167,110 +167,98 @@ namespace BoxMolina.Admin
         protected void txtBuscarFiltro_TextChanged(object sender, EventArgs e)
         {
             paginaActual = 0;
-            cargarClases();
+            cargarCostos();
         }
 
-        protected void btnNueva_Click(object sender, EventArgs e)
+        protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            txtCupo.Text = "";
-            txtHora.Text = "";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "levantarModalNueva();", true);
+            txtDescripcion.Text = "";
+            txtMonto.Text = "";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "levantarModalNuevo();", true);
         }
 
-        protected void btnNuevaClase_Click(object sender, EventArgs e)
+        protected void btnNuevoCosto_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtHora.Text))
+            if (!String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                if (!String.IsNullOrEmpty(txtCupo.Text))
+                if (!String.IsNullOrEmpty(txtMonto.Text)&&Convert.ToDouble(txtMonto.Text)>0)
                 {
-                    String[] horaText = txtHora.Text.Split(':');
-                    int hora = Convert.ToInt32(horaText[0]);
-                    int minutos = Convert.ToInt32(horaText[1]);
-                    int cupo = Convert.ToInt32(txtCupo.Text);
-
-                    Clase clase = new Clase();
-                    clase.cupo = cupo;
-                    clase.hora = hora;
-                    clase.minutos = minutos;
-                    claseDatos.insertarClase(clase);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "Se guardo la clase correctamente" + "');", true);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "cerrarModalNueva();", true);
-                    Session["listaClases"] = claseDatos.getClases();
-                    cargarClases();
+                    Costo costo = new Costo();
+                    costo.descripcion = txtDescripcion.Text;
+                    costo.monto = Convert.ToDouble(txtMonto.Text); ;
+                    costoDatos.insertarCosto(costo);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "Se guardo el monto correctamente" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "cerrarModalNuevo();", true);
+                    Session["listaCostos"] = costoDatos.getCostos();
+                    cargarCostos();
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar el cupo" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar el monto" + "');", true);
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar una hora" + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar la descripción" + "');", true);
             }
         }
 
         protected void btnSieliminar_Click(object sender, EventArgs e)
         {
-            claseDatos.eliminarClase(claseSeleccionada);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "La clase ha sido eliminada correctamente" + "');", true);
+            costoDatos.eliminarCosto(costoSeleccionado);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "El costo ha sido eliminado correctamente" + "');", true);
             ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "cerrarModalEliminar();", true);
-            Session["listaClases"] = claseDatos.getClases();
-            cargarClases();
+            Session["listaCostos"] = costoDatos.getCostos();
+            cargarCostos();
         }
 
         protected void btnSiEditar_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtEditarHora.Text))
+            if (!String.IsNullOrEmpty(txtEditarDescripcion.Text))
             {
-                if (!String.IsNullOrEmpty(txtEditarCupo.Text))
+                if (!String.IsNullOrEmpty(txtEditarMonto.Text)&&Convert.ToDouble(txtEditarMonto.Text)>0)
                 {
-                    String[] horaText = txtEditarHora.Text.Split(':');
-                    int hora = Convert.ToInt32(horaText[0]);
-                    int minutos = Convert.ToInt32(horaText[1]);
-                    int cupo = Convert.ToInt32(txtEditarCupo.Text);
-
-                    claseSeleccionada.cupo = cupo;
-                    claseSeleccionada.hora = hora;
-                    claseSeleccionada.minutos = minutos;
-                    claseDatos.actualizarClase(claseSeleccionada);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "Se edito la clase correctamente" + "');", true);
+                    costoSeleccionado.descripcion = txtEditarDescripcion.Text;
+                    costoSeleccionado.monto = Convert.ToDouble(txtEditarMonto.Text);
+                    costoDatos.actualizarCosto(costoSeleccionado);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "Se edito el monto correctamente" + "');", true);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "cerrarModalEditar();", true);
-                    Session["listaClases"] = claseDatos.getClases();
-                    cargarClases();
+                    Session["listaCostos"] = costoDatos.getCostos();
+                    cargarCostos();
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar el cupo" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar el monto" + "');", true);
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar una hora" + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.error('" + "Debe de ingresar una descripción" + "');", true);
             }
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-            int idClase = Convert.ToInt32((((LinkButton)(sender)).CommandArgument).ToString());
+            int idCosto = Convert.ToInt32((((LinkButton)(sender)).CommandArgument).ToString());
 
-            List<Clase> listaClases = (List<Clase>)Session["listaClases"];
+            List<Costo> listaCostos = (List<Costo>)Session["listaCostos"];
 
-            claseSeleccionada = (Clase)(listaClases.Where(clase => clase.idClase == idClase).ToList().First());
+            costoSeleccionado = (Costo)(listaCostos.Where(costo => costo.idCosto == idCosto).ToList().First());
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "levantarModalEditar();", true);
-            txtEditarCupo.Text = claseSeleccionada.cupo.ToString();
-            txtEditarHora.Text = (claseSeleccionada.hora < 10 ? "0" + claseSeleccionada.hora : claseSeleccionada.hora.ToString()) + ":" + (claseSeleccionada.minutos < 10 ? "0" + claseSeleccionada.minutos : claseSeleccionada.minutos.ToString());
+            txtEditarDescripcion.Text = costoSeleccionado.descripcion;
+            txtEditarMonto.Text = costoSeleccionado.monto.ToString();
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            int idClase = Convert.ToInt32((((LinkButton)(sender)).CommandArgument).ToString());
+            int idCosto = Convert.ToInt32((((LinkButton)(sender)).CommandArgument).ToString());
 
-            List<Clase> listaClases = (List<Clase>)Session["listaClases"];
+            List<Costo> listaCostos = (List<Costo>)Session["listaCostos"];
 
-            claseSeleccionada = (Clase)(listaClases.Where(clase => clase.idClase == idClase).ToList().First());
+            costoSeleccionado = (Costo)(listaCostos.Where(costo => costo.idCosto == idCosto).ToList().First());
 
-            lblEliminar.Text = "¿Esta seguro de eliminar la clase de " + (claseSeleccionada.hora < 13 ? claseSeleccionada.hora : (claseSeleccionada.hora - 12)) + ":" + claseSeleccionada.minutos + (claseSeleccionada.hora < 13 ? " am" : " pm") + " de forma permanente y toda su información asociada?";
+            lblEliminar.Text = "¿Esta seguro de eliminar el costo de " + costoSeleccionado.descripcion + " de forma permanente y toda su información asociada?";
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "activar", "levantarModalEliminar();", true);
         }

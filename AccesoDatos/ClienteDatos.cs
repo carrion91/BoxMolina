@@ -102,7 +102,7 @@ namespace AccesoDatos
             SqlConnection sqlConnection = conexion.conexionBoxMolina();
 
             SqlCommand sqlCommand = new SqlCommand(@"update Cliente set nombre_completo = @nombreCompleto, cedula = @cedula, confirmado = @confirmado,
-                                                    activo = @activo, telefono = @telefono, correo = @correo, tipo_clase = @tipoClase, contrasenna = ENCRYPTBYPASSPHRASE('molina', '" + cliente.contrasenna + "') "+
+                                                    activo = @activo, telefono = @telefono, correo = @correo, tipo_clase = @tipoClase, contrasenna = ENCRYPTBYPASSPHRASE('molina', '" + cliente.contrasenna + "') " +
                                                     "where id_cliente = @idCliente;", sqlConnection);
 
             sqlCommand.Parameters.AddWithValue("@nombreCompleto", cliente.nombreCompleto);
@@ -132,6 +132,37 @@ namespace AccesoDatos
             sqlCommand.ExecuteReader();
 
             sqlConnection.Close();
+        }
+
+        public Cliente getClientePorCedula(Cliente clienteConsulta)
+        {
+            Cliente cliente = new Cliente();
+            SqlConnection conexionSpartan = conexion.conexionBoxMolina();
+            SqlCommand sqlCommand = new SqlCommand(@"SELECT id_cliente,nombre_completo,telefono,CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('molina', contrasenna)) as contrasenna,cedula,confirmado,activo,correo,tipo_clase
+  FROM Cliente where cedula = @cedula;
+  ;", conexionSpartan);
+            sqlCommand.Parameters.AddWithValue("@cedula", clienteConsulta.cedula);
+            SqlDataReader reader;
+
+            conexionSpartan.Open();
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.Read())
+            {
+                cliente.idCliente = Convert.ToInt32(reader["id_cliente"].ToString());
+                cliente.nombreCompleto = reader["nombre_completo"].ToString();
+                cliente.telefono = reader["telefono"].ToString();
+                cliente.cedula = Convert.ToInt32(reader["cedula"].ToString());
+                cliente.confirmado = Convert.ToBoolean(reader["confirmado"].ToString());
+                cliente.activo = Convert.ToBoolean(reader["activo"].ToString());
+                cliente.contrasenna = reader["contrasenna"].ToString();
+                cliente.correo = reader["correo"].ToString();
+                cliente.tipoClase = Convert.ToBoolean(reader["tipo_clase"].ToString());
+            }
+
+            conexionSpartan.Close();
+
+            return cliente;
         }
     }
 }

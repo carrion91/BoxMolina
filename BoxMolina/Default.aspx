@@ -3,11 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Contenido" runat="server">
-
+    <%--  --%>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div style="background-color: black; text-align: right">
                 <asp:LinkButton ID="btnIniciarSesion" OnClick="btnIniciarSesion_Click" runat="server" Style="color: white">Iniciar sesión</asp:LinkButton>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="row;contenido">
+                <div class="col-md-12 col-sm-12">
+                </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
@@ -56,7 +65,7 @@
                                         <div class="col-md-12 col-sm-12">
                                             <asp:CheckBox ID="ChckBxAdministrador" runat="server" Text="Administrador" />
                                             <div style="text-align: center; align-content: center">
-                                                <asp:LinkButton ID="btnOlvidoContrasenna" runat="server">Olvidó su contraseña?</asp:LinkButton>
+                                                <asp:LinkButton ID="btnOlvidoContrasenna" runat="server" OnClick="btnOlvidoContrasenna_Click">¿Olvidó su contraseña?</asp:LinkButton>
                                             </div>
                                         </div>
 
@@ -182,6 +191,80 @@
 
     <!-- Fin Modal de sesion -->
 
+    <!-- Modal de olvido contraseña -->
+    <div id="modalOlvido" class="modal fade" role="alertdialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12" style="align-content: center; text-align: center">
+                                    <asp:Label runat="server" Text="¿Olvidó su contraseña?" Font-Bold="true"></asp:Label>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <br />
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-3 col-sm-12">
+                                        <asp:Label ID="Label8" runat="server" Text="Cédula (formato 123456789)"></asp:Label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-12">
+                                        <asp:TextBox ID="txtCedulaOlvido" OnTextChanged="btnAceptarCedula_Click" runat="server" CssClass="form-control" placeholder="123456789" MaxLength="9" MinLength="9" TextMode="Number"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <br />
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <asp:Button ID="btnAceptarCedula" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarCedula_Click" />
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <br />
+                                </div>
+
+                                <div class="col-md-12 col-sm-12" id="divCorreo" style="display: none" runat="server">
+                                    <div class="col-md-12 col-sm-12">
+                                        <asp:Label ID="Label10" runat="server" Text="Se va a enviar un correo con una nueva clave generada automáticamente, luego de ingresar puede cambiar esta contraseña por la que deseé."></asp:Label>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <br />
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12">
+                                        <asp:Label ID="Label9" runat="server" Text="Correo para enviar nueva contraseña"></asp:Label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-12">
+                                        <asp:TextBox ID="txtCorreoOlvido" runat="server" CssClass="form-control" placeholder="Correo" ReadOnly="true"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Modal body -->
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer" style="align-content: center; text-align: center;">
+                            <asp:Button ID="btnEnViar" runat="server" Text="Enviar" CssClass="btn btn-default" Visible="false" OnClick="btnEnViar_Click"/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <!-- Fin Modal footer -->
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <!-- Fin Modal content -->
+    </div>
+    <!-- Fin Modal de olvido contraseña -->
+
     <script type="text/javascript">
 
         function levantarModalSesion() {
@@ -190,6 +273,14 @@
 
         function cerrarModalSesion() {
             $('#modalSesion').modal('hide');
+        };
+
+        function levantarModalOlvido() {
+            $('#modalOlvido').modal('show');
+        };
+
+        function cerrarModalOlvido() {
+            $('#modalOlvido').modal('hide');
         };
 
         function verViewIngresar() {

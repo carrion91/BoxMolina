@@ -16,7 +16,7 @@ namespace AccesoDatos
         {
             List<Costo> listaCostos = new List<Costo>();
             SqlConnection conexionSpartan = conexion.conexionBoxMolina();
-            SqlCommand sqlCommand = new SqlCommand(@"SELECT * FROM Costo;", conexionSpartan);
+            SqlCommand sqlCommand = new SqlCommand(@"SELECT * FROM Costo order by descripcion;", conexionSpartan);
             SqlDataReader reader;
 
             conexionSpartan.Open();
@@ -39,11 +39,11 @@ namespace AccesoDatos
         public int insertarCosto(Costo costoInsertar)
         {
             SqlConnection conexionSpartan = conexion.conexionBoxMolina();
-            String consulta = @"insert costo (descripcion,monto) values(@descripcion,@); SELECT SCOPE_IDENTITY();";
+            String consulta = @"insert costo (descripcion,monto) values(@descripcion,@monto); SELECT SCOPE_IDENTITY();";
             SqlCommand sqlCommand = new SqlCommand(consulta, conexionSpartan);
 
             sqlCommand.Parameters.AddWithValue("@descripcion", costoInsertar.descripcion);
-            sqlCommand.Parameters.AddWithValue("@hora", costoInsertar.monto);
+            sqlCommand.Parameters.AddWithValue("@monto", costoInsertar.monto);
 
             conexionSpartan.Open();
             int idCosto = Convert.ToInt32(sqlCommand.ExecuteScalar());

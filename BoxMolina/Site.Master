@@ -31,7 +31,7 @@
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
 
-        <nav class="navbar navbar-default" role="navigation" style="background-color: black">
+        <nav class="navbar navbar-default" role="navigation" style="background-color: black;">
             <div class="container-fluid">
                 <img src='<%=Page.ResolveUrl("~/Imagenes/logo.jpg") %>' />
                 <div class="navbar-header">
@@ -55,6 +55,7 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white">Configuración<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu" style="background-color:black">
                                             <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClases.aspx") %>' style="color: white">Clases</a></li>
+                                            <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarCostos.aspx") %>' style="color: white">Costos</a></li>
                                         </ul>
                                     </li>
                                 <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClientes.aspx") %>' style="color: white">Clientes</a></li>
@@ -64,10 +65,7 @@
                         <%------------------------------MENU DE CLIENTE--------------------------%>
                         <div id="MenuCliente" runat="server">
                             <ul class="nav navbar-nav">
-                                <li><a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color: white">Inicio</a></li>
-                                <li>
-                                    <a href='<%=Page.ResolveUrl("~/Default.aspx") %>' style="color: white">Acerca de</a>
-                                </li>
+                                <li><a href='<%=Page.ResolveUrl("~/Client/ConfiguracionCliente.aspx") %>' style="color: white">Configuración</a></li>
                             </ul>
                         </div>
                         <%------------------------------ FIN MENU DE CLIENTE--------------------------%>

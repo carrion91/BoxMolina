@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,6 +17,7 @@ namespace BoxMolina.Admin
         #region varibles globales
         ClienteDatos clienteDatos = new ClienteDatos();
         public static Cliente clienteSeleccionado;
+        Thread threadEnviarCorreo;
         #endregion
 
         #region paginacion
@@ -215,6 +217,14 @@ namespace BoxMolina.Admin
             clienteDatos.actualizarCliente(clienteSeleccionado);
             cargarClientes();
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "toastr.success('" + "El cliente ha sido confirmado" + "');", true);
+
+            String destinatario = clienteSeleccionado.correo;
+            String mensaje = "<br/><h1>Se ha confirmado su registro para ingresar al sistema de Box Molina</h1><b>¡Muchas gracias por su registro!</b>";
+            String asunto = "Box Molina confirmación de registro";
+            String copiaOculta = "leo.carrion.23@gmail.com";
+
+            threadEnviarCorreo = new Thread(delegate () { enviarCorreo(destinatario, mensaje, copiaOculta, asunto); });
+            threadEnviarCorreo.Start();
         }
 
         protected void btnDesconfirmar_Click(object sender, EventArgs e)
@@ -331,6 +341,35 @@ namespace BoxMolina.Admin
             txtCorreo.Text = "";
             txtNombreCompleto.Text = "";
             txtTelefono.Text = "";
+        }
+
+        public void enviarCorreo(String destinatario, String mensaje, String copiaOculta, String asunto)
+        {
+            #region Envío de correos
+
+            // Cuerpo del correo
+            String cuerpoCorreo = "<div style='width: 100 %; background - color:black'><img width='90' height='90' src='https://scontent.fsjo6-1.fna.fbcdn.net/v/t1.0-9/53909715_373770576548472_2873678814351720448_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mnFhZYoTLnoAX-as-M7&_nc_ht=scontent.fsjo6-1.fna&oh=ea4c2e5b14efe889055e1bf52e1e1967&oe=5F2C2F02' /></div>" + mensaje;
+
+            Dictionary<String, String> informacionCorreo = new Dictionary<String, String>();
+            informacionCorreo["destinatarios"] = destinatario;
+            informacionCorreo["conCopia"] = "";
+            informacionCorreo["conCopiaOculta"] = copiaOculta;
+            informacionCorreo["asunto"] = asunto;
+            informacionCorreo["cuerpo"] = cuerpoCorreo;
+            informacionCorreo["remitente"] = "consejotecnico2016@gmail.com";
+            informacionCorreo["archivos"] = "";
+
+            Boolean enviado = Utilidades.enviarCorreo(informacionCorreo);
+
+            #endregion
+
+            try
+            {
+                threadEnviarCorreo.Abort();
+            }
+            catch
+            {
+            }
         }
         #endregion
     }
