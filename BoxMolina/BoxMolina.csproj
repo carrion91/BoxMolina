@@ -70,6 +70,7 @@
     <Content Include="Admin\AdministrarClases.aspx" />
     <Content Include="Admin\AdministrarClientes.aspx" />
     <Content Include="Admin\AdministrarCostos.aspx" />
+    <Content Include="Admin\AdministrarPagos.aspx" />
     <Content Include="Client\ConfiguracionCliente.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\carrion.css" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="Admin\AdministrarCostos.aspx.designer.cs">
       <DependentUpon>AdministrarCostos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarPagos.aspx.cs">
+      <DependentUpon>AdministrarPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarPagos.aspx.designer.cs">
+      <DependentUpon>AdministrarPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\ConfiguracionCliente.aspx.cs">
       <DependentUpon>ConfiguracionCliente.aspx</DependentUpon>

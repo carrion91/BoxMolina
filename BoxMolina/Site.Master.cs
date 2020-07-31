@@ -25,8 +25,7 @@ namespace BoxMolina
             Session.RemoveAll();
             Session.Abandon();
             Session.Clear();
-            String url = Page.ResolveUrl("~/Default.aspx");
-            Response.Redirect(url);
+            Server.Transfer("~/Default.aspx");
         }
     }
 }

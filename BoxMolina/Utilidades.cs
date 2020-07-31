@@ -38,8 +38,7 @@ namespace BoxMolina
                     page.Session.RemoveAll();
                     page.Session.Abandon();
                     page.Session.Clear();
-                    String url = page.ResolveUrl("~/Default.aspx");
-                    page.Response.Redirect(url);
+                    page.Server.Transfer("~/Default.aspx");
                 }
 
             }
@@ -55,8 +54,7 @@ namespace BoxMolina
                     page.Session.RemoveAll();
                     page.Session.Abandon();
                     page.Session.Clear();
-                    String url = page.ResolveUrl("~/Default.aspx");
-                    page.Response.Redirect(url);
+                    page.Server.Transfer("~/Default.aspx");
                 }
             }
             else
@@ -64,8 +62,7 @@ namespace BoxMolina
                 page.Session.RemoveAll();
                 page.Session.Abandon();
                 page.Session.Clear();
-                String url = page.ResolveUrl("~/Default.aspx");
-                page.Response.Redirect(url);
+                page.Server.Transfer("~/Default.aspx");
             }
         }
 

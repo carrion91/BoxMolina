@@ -18,10 +18,10 @@
     <!--Dialogos de Mensaje ref:https://nakupanda.github.io/bootstrap3-dialog/#available-options -->
 
     <!-- Table -->
-    <script src='<%=Page.ResolveUrl("~/js/jquery-3.0.0.js") %>'></script>
-    <script src='<%=Page.ResolveUrl("~/js/bootstrap.js") %>'></script>
-    <script src='<%=Page.ResolveUrl("~/js/toastr.js") %>'></script>
-    <script src='<%=Page.ResolveUrl("~/js/toastrConfig.js") %>'></script>
+    <script src='<%=ResolveClientUrl("~/js/jquery-3.0.0.js") %>'></script>
+    <script src='<%=ResolveClientUrl("~/js/bootstrap.js") %>'></script>
+    <script src='<%=ResolveClientUrl("~/js/toastr.js") %>'></script>
+    <script src='<%=ResolveClientUrl("~/js/toastrConfig.js") %>'></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -33,7 +33,7 @@
 
         <nav class="navbar navbar-default" role="navigation" style="background-color: black;">
             <div class="container-fluid">
-                <img src='<%=Page.ResolveUrl("~/Imagenes/logo.jpg") %>' />
+                <img src="~/Imagenes/logo.jpg" runat="server" />
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed btn btn-danger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
                         <span class="sr-only">Toggle navigation</span>
@@ -54,18 +54,19 @@
                                 <li class="dropdown" aria-expanded="true">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white">Configuración<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu" style="background-color:black">
-                                            <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClases.aspx") %>' style="color: white">Clases</a></li>
-                                            <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarCostos.aspx") %>' style="color: white">Costos</a></li>
+                                            <li><a href="~/Admin/AdministrarClases.aspx" runat="server" style="color: white">Clases</a></li>
+                                            <li><a href="~/Admin/AdministrarCostos.aspx" runat="server" style="color: white">Costos</a></li>
                                         </ul>
                                     </li>
-                                <li><a href='<%=Page.ResolveUrl("~/Admin/AdministrarClientes.aspx") %>' style="color: white">Clientes</a></li>
+                                <li><a href="~/Admin/AdministrarClientes.aspx" runat="server" style="color: white">Clientes</a></li>
+                                <li><a href="~/Admin/AdministrarPagos.aspx" runat="server" style="color: white">Ingresar pagos</a></li>
                             </ul>
                         </div>
                         <%------------------------------ FIN MENU DE ADMINISTRADOR--------------------------%>
                         <%------------------------------MENU DE CLIENTE--------------------------%>
                         <div id="MenuCliente" runat="server">
                             <ul class="nav navbar-nav">
-                                <li><a href='<%=Page.ResolveUrl("~/Client/ConfiguracionCliente.aspx") %>' style="color: white">Configuración</a></li>
+                                <li><a href="~/Client/ConfiguracionCliente.aspx" runat="server" style="color: white">Configuración</a></li>
                             </ul>
                         </div>
                         <%------------------------------ FIN MENU DE CLIENTE--------------------------%>

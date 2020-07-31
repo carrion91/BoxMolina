@@ -68,8 +68,7 @@ namespace BoxMolina
                 {
                     Session["usuario"] = "Administrador";
                     Session["rol"] = 2;
-                    String url = Page.ResolveUrl("~/Inicio.aspx");
-                    Response.Redirect(url);
+                    Server.Transfer("~/Inicio.aspx");
                 }
                 else
                 {
@@ -104,8 +103,7 @@ namespace BoxMolina
                                     Session["usuario"] = cliente.nombreCompleto;
                                     Session["idUsuario"] = cliente.idCliente;
                                     Session["rol"] = 3;
-                                    String url = Page.ResolveUrl("~/Inicio.aspx");
-                                    Response.Redirect(url);
+                                    Server.Transfer("~/Inicio.aspx");
                                 }
                             }
                         }

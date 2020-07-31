@@ -47,6 +47,7 @@
     <Compile Include="ClienteDatos.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="CostoDatos.cs" />
+    <Compile Include="PagoDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

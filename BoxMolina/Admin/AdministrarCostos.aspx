@@ -22,13 +22,13 @@
                     <hr />
                 </div>
 
-                <div class="col-md-12 col-sm-12">
+               <%-- <div class="col-md-12 col-sm-12">
                     <asp:Button ID="btnNuevo" runat="server" Text="Nuevo costo" OnClick="btnNuevo_Click" CssClass="btn btn-default" />
                 </div>
 
                 <div class="col-md-12 col-sm-12">
                     <hr />
-                </div>
+                </div>--%>
 
                 <%-- tabla--%>
                 <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; overflow-y: auto;">
@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>
                                         <asp:LinkButton ID="btnEditar" OnClick="btnEditar_Click" runat="server" ToolTip="Editar" CommandArgument='<%# Eval("idCosto") %>' CssClass="btn glyphicon glyphicon-pencil" ForeColor="Black"></asp:LinkButton>
-                                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ToolTip="Eliminar" CommandArgument='<%# Eval("idCosto") %>' CssClass="btn glyphicon glyphicon-trash" ForeColor="Black"></asp:LinkButton>
+                                        <%--<asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ToolTip="Eliminar" CommandArgument='<%# Eval("idCosto") %>' CssClass="btn glyphicon glyphicon-trash" ForeColor="Black"></asp:LinkButton>--%>
                                     </td>
                                     <td>
                                         <%# Eval("descripcion")%>
@@ -236,7 +236,7 @@
                                         <asp:Label ID="Label3" runat="server" Text="Descripción"></asp:Label>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtEditarDescripcion" runat="server" CssClass="form-control" placeholder="Descripción"></asp:TextBox>
+                                        <asp:TextBox ID="txtEditarDescripcion" runat="server" CssClass="form-control" placeholder="Descripción" ReadOnly="true"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
